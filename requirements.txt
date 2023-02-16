@@ -1,0 +1,4 @@
+selenium==4.1.0
+webdriver-manager==3.5.2
+selenium-wire==4.7.1
+schedule==1.1.0
