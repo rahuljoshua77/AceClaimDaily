@@ -29,7 +29,7 @@ opts.add_argument("--start-maximized")
 opts.add_argument('--ignore-certificate-errors')
 opts.add_argument('--disable-blink-features=AutomationControlled')
 opts.add_experimental_option('excludeSwitches', ['enable-logging'])
-opts.add_extension(f"{cwd}\\metamaskExtension.crx")
+opts.add_extension(f"{cwd}\\metamaskExtension.zip")
 
 def date():
     date = f"[{time.strftime('%d-%m-%y %X')}]"
