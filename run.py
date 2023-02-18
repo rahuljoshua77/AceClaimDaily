@@ -128,7 +128,7 @@ def run_ace_fountain():
     for urutan in get_add:
         parts = urutan.split(";")
 
-# Memisahkan bagian "parts[1]" berdasarkan ":"
+        # Memisahkan bagian "parts[1]" berdasarkan ":"
         subparts = parts[1].split(":")
 
         # Menyimpan hasil ke dalam variabel yang sesuai
@@ -151,6 +151,16 @@ def run_ace_fountain():
         browser.get('https://ace.fusionist.io/')
         xpath_long('//button[text()="Connect Wallet"]')
         xpath_long("//button[text()='MetaMask']")
+        connectToWebsite()
+        try:
+            signConfirm()
+        except:
+            pass
+        browser.get('https://ace.fusionist.io/account/endurance')
+        sleep(5)
+        xpath_el("//p[contains(text(),'Fountain'])]/parent::div//button")
+        sleep(5)
+        browser.quit()
 
 def run_ace_pump():
     global browser
@@ -186,20 +196,37 @@ def run_ace_pump():
         xpath_long('//button[text()="Connect Wallet"]')
         xpath_long("//button[text()='MetaMask']")
         connectToWebsite()
-        signConfirm()
+        try:
+            signConfirm()
+        except:
+            pass
         browser.get('https://ace.fusionist.io/account/endurance')
         sleep(5)
         xpath_el("//p[text()='Ace Pump']/parent::div//button")
         sleep(5)
+        try:
+            signConfirm()
+        except:
+            pass
         browser.quit()
 
+ 
+if __name__ == '__main__':
+    global inp
+    
+    inp = input("[*] 1. Pump\n[*] 2. Fountain\n[*] Choose (1/2): ")
+    if inp == "1":
+        run_ace_pump()
+    else:
+        run_ace_fountain()
 # Jalankan fungsi run_ace_fountain() setiap 24 jam sekali
-schedule.every(24).hours.do(run_ace_fountain)
 
-# Jalankan fungsi run_ace_pump() setiap 12 jam sekali
-schedule.every(12).hours.do(run_ace_pump)
+# schedule.every(24).hours.do(run_ace_fountain)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# # Jalankan fungsi run_ace_pump() setiap 12 jam sekali
+# schedule.every(12).hours.do(run_ace_pump)
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
     
